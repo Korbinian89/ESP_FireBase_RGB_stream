@@ -292,31 +292,5 @@ void loop()
 
     update_color( /* color */ streamColor.dataPath() );
   }
-
-  #if 0
-  if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 5000 || sendDataPrevMillis == 0)){
-    std::lock_guard<std::mutex> lock(fireBaseMtx);
-    sendDataPrevMillis = millis();
-
-    blink_led();
-
-    // Write an Int number on the database path test/int
-    if (Firebase.RTDB.setBool(&fbdo, "test/LED_STATE", s_led_state)){
-      Serial.println("PASSED");
-      Serial.println("PATH: ");
-      Serial.println(fbdo.dataPath());
-      Serial.println("TYPE: ");
-      Serial.println(fbdo.dataType());
-    }
-    else {
-      Serial.println("FAILED");
-      Serial.println("REASON: ");
-      Serial.println( fbdo.errorReason());
-    }
-
-    /* Toggle the LED state */
-    s_led_state = !s_led_state;
-  }
-  #endif
 }
 
